@@ -1,0 +1,36 @@
+package {{package}};
+
+
+import android.content.Context;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import io.stacknix.merlin.db.commons.FieldInfo;
+import io.stacknix.merlin.db.Merlin;
+import io.stacknix.merlin.db.MerlinObject;
+
+import io.stacknix.merlin.db.Merlin;
+import io.stacknix.merlin.db.MerlinObject;
+
+{{imports}}
+
+public class MerlinDatabase {
+
+    public final List<Class<? extends MerlinObject>> DATA = Arrays.asList({{models}});
+
+    public List<Class<? extends MerlinObject>> getModels(){
+        return DATA;
+    }
+
+    private void connect(Context context){
+        Merlin.connect(context, getModels());
+    }
+
+    public static void init(Context context){
+        new MerlinDatabase().connect(context);
+    }
+
+}
